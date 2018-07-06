@@ -1,5 +1,5 @@
-import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
+import { ItemService } from '../services/item.service';
 
 @Component({
   selector: 'app-item-list',
@@ -10,19 +10,19 @@ export class ItemListComponent implements OnInit {
   items: any;
   addItem = false;
 
-  constructor(private http: Http) { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
-    this.getItems();
-  }
-
-  getItems() {
-    this.http.get('http://localhost:64018/api/Items').subscribe(res => {
-      console.log(res);
-    });
+    this.itemService.getItems().subscribe(res => {
+      this.items = res.json();
+    }); 
   }
 
   toggleAddItem() {
     this.addItem = !this.addItem;
+  }
+
+  updateList(item) {
+    this.items.push(item);
   }
 }

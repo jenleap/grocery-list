@@ -1,16 +1,24 @@
 <div *ngIf="addItem; then addComponent else addButton"></div>
 
 <ng-template #addComponent>
-  <app-add-item (close)="toggleAddItem()"></app-add-item>
+  <app-add-item (close)="toggleAddItem()" (update)="updateList($event)"></app-add-item>
 </ng-template>
 
 <ng-template #addButton>
-  <button (click)="toggleAddItem()" type="button" class="btn btn-secondary">Add Item</button>
+  <button (click)="toggleAddItem()" type="button" class="add-button btn btn-secondary">Add Item</button>
 </ng-template>
 
+<ul>
+  <li *ngFor="let i of items">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{i.title}}</h5>
+        <div class="additionalInfo">
+          <p class="card-text">{{i.notes}}</p>
+          <button type="button" class="btn btn-secondary">Edit</button>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
 
-
-
-<p>
-  item-list works!
-</p>

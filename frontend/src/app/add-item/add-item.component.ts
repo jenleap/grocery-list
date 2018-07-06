@@ -10,6 +10,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class AddItemComponent implements OnInit {
   @Output() close = new EventEmitter();
+  @Output() update = new EventEmitter();
 
   formItem: any = {}
 
@@ -23,7 +24,16 @@ export class AddItemComponent implements OnInit {
   }
 
   addItem() {
-    this.itemService.addItem(this.formItem);
+    var item = {
+      title: this.formItem.title,
+      notes: this.formItem.notes,
+      isPurchased: false,
+      isDeleted: false
+    };
+
+    this.itemService.addItem(item).subscribe(res => { 
+      this.update.emit(res.json());
+    });
     this.formItem = {};
   }
 
