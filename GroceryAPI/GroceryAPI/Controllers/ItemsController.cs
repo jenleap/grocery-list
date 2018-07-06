@@ -99,7 +99,7 @@ namespace GroceryAPI.Controllers
         }
 
         // DELETE: api/Items/5
-        [HttpDelete("{id}")]
+        /*[HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem([FromRoute] int id)
         {
             if (!ModelState.IsValid)
@@ -117,7 +117,7 @@ namespace GroceryAPI.Controllers
             await _context.SaveChangesAsync();
 
             return Ok(item);
-        }
+        } */
 
         private bool ItemExists(int id)
         {

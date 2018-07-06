@@ -27,6 +27,7 @@ namespace GroceryAPI
         {
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Default")));
             services.AddMvc();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,6 +38,7 @@ namespace GroceryAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
             app.UseMvc();
         }
     }
