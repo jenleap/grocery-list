@@ -1,3 +1,16 @@
+<div *ngIf="addItem; then addComponent else addButton"></div>
+
+<ng-template #addComponent>
+  <app-add-item (close)="toggleAddItem()"></app-add-item>
+</ng-template>
+
+<ng-template #addButton>
+  <button (click)="toggleAddItem()" type="button" class="btn btn-secondary">Add Item</button>
+</ng-template>
+
+
+
+
 <p>
   item-list works!
 </p>

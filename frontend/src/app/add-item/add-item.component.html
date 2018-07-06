@@ -1,0 +1,13 @@
+<form #addItemForm="ngForm" (ngSubmit)="addItem()">
+  <div class="form-group">
+    <!-- <label for="exampleFormControlInput1">Grocery Item</label> -->
+    <input type="text" #title="ngModel" class="form-control" id="grocery-item" required name="title" [(ngModel)]="formItem.title" placeholder="Grocery item">
+  </div>
+  <div class="form-group">
+    <!-- <label for="exampleFormControlTextarea1">Notes (optional)</label> -->
+    <textarea #notes="ngModel" class="form-control" id="exampleFormControlTextarea1" rows="3" name="notes" [(ngModel)]="formItem.notes" placeholder="Notes (optional)"></textarea>
+  </div>
+
+  <button [disabled]="!addItemForm.valid" type="submit" class="btn btn-secondary">Add</button>
+  <button (click)="closeComponent()" type="button" class="btn btn-outline-secondary">Done</button>
+</form>

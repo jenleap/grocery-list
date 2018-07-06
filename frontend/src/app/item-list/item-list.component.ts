@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItemListComponent implements OnInit {
   items: any;
+  addItem = false;
 
   constructor(private http: Http) { }
 
@@ -19,5 +20,9 @@ export class ItemListComponent implements OnInit {
     this.http.get('http://localhost:64018/api/Items').subscribe(res => {
       console.log(res);
     });
+  }
+
+  toggleAddItem() {
+    this.addItem = !this.addItem;
   }
 }
