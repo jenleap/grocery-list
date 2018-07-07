@@ -7,3 +7,7 @@ ul {
 .additionalInfo {
     display: none;
 }
+
+button {
+    margin-bottom: 20px;
+}

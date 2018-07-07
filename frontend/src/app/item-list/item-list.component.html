@@ -1,12 +1,8 @@
-<div *ngIf="addItem; then addComponent else addButton"></div>
+<button (click)="toggleAddItem()" type="button" class="add-button btn btn-secondary">Add Item</button>
 
-<ng-template #addComponent>
-  <app-add-item (close)="toggleAddItem()" (update)="addItemtoList($event)"></app-add-item>
-</ng-template>
-
-<ng-template #addButton>
-  <button (click)="toggleAddItem()" type="button" class="add-button btn btn-secondary">Add Item</button>
-</ng-template>
+<div [@openDiv]="addItem ? 'open' : 'closed'">
+    <app-add-item (close)="toggleAddItem()" (update)="addItemtoList($event)"></app-add-item>
+</div>
 
 <ul>
   <li *ngFor="let i of items">

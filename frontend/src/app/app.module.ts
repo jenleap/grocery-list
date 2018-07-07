@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { ItemListComponent } from './item-list/item-list.component';
@@ -22,7 +23,8 @@ import { GroceryItemComponent } from './grocery-item/grocery-item.component';
       BrowserModule,
       HttpModule,
       FormsModule,
-      NgbModule.forRoot()
+      NgbModule.forRoot(),
+      BrowserAnimationsModule
    ],
    providers: [],
    bootstrap: [
