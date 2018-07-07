@@ -19,5 +19,5 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
   
     transition('open => closed', [
       animate('500ms ease-in')
-    ])
+    ]),
   ]);

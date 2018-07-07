@@ -17,7 +17,9 @@ export class ItemListComponent implements OnInit {
   ngOnInit() {
     this.itemService.getItems().subscribe(res => {
       this.items = res.json();
+      //this.shuffleList();
     }); 
+    
   }
 
   toggleAddItem() {
@@ -25,12 +27,18 @@ export class ItemListComponent implements OnInit {
   }
 
   addItemtoList(item) {
-    this.items.push(item);
+    this.items.splice(0, 0, item);
   }
 
   removeItemfromList(id) {
     this.items = this.items.filter(i => {
       return i.id != id;
     });
+  }
+
+  shuffleList() {
+    this.items.sort((x, y) => {
+      return (x.isPurchased === y.isPurchased)? 0 : x? 1 : -1;
+    }).reverse();
   }
 }

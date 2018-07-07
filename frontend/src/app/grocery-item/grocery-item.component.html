@@ -1,35 +1,44 @@
-<div (click)="seeDetails()" class="card">
-  
-    <div [@openDiv]="!editView ? 'open' : 'closed'">
-      <div class="card-body">
-          <div class="check-box" (click)="markPurchased()">
-            <div *ngIf="item.isPurchased">
-                <i class="fa fa-check"></i>
-            </div>
-          </div>
-          <h5 class="card-title" [class.is-purchased]="item.isPurchased">{{item.title}}</h5>
-          <div [@openDiv]="openDetails ? 'open' : 'closed'">
-            <p class="card-text">{{item.notes}}</p>
-            <button (click)="openEdit()" type="button" class="btn btn-secondary">Edit</button>
-            <button (click)="confirmDelete(content)" type="button" class="btn btn-secondary">Delete</button>
-          </div>
-        </div>
-      </div>
+<div (mouseenter)="showEditIcon()" (mouseleave)="showEditIcon()" class="card">
+    <div *ngIf="editView; then editDiv else detailsDiv"></div>
 
-  <div [@openDiv]="editView ? 'open' : 'closed'">
-      <form #editItemForm="ngForm" (ngSubmit)="updateItem()">
-          <div class="form-group">
-            <input type="text" #title="ngModel" class="form-control" id="grocery-item" required name="title" [(ngModel)]="item.title">
-          </div>
-          <div class="form-group">
-            <textarea #notes="ngModel" class="form-control" id="exampleFormControlTextarea1" rows="3" name="notes" [(ngModel)]="item.notes"></textarea>
-          </div>
-      
-          <button (click)="openEdit()" [disabled]="!editItemForm.valid" type="submit" class="btn btn-secondary">Save</button>
-          <button (click)="openEdit(); seeDetails()" type="button" class="btn btn-outline-secondary">Cancel</button>
-        </form>
-  </div>
+    <ng-template #editDiv>
+        <form #editItemForm="ngForm" (ngSubmit)="updateItem()">
+            <div class="form-group">
+              <input type="text" #title="ngModel" class="form-control" id="grocery-item" required name="title" [(ngModel)]="item.title">
+            </div>
+            <div class="form-group">
+              <textarea #notes="ngModel" class="form-control" id="exampleFormControlTextarea1" rows="3" name="notes" [(ngModel)]="item.notes"></textarea>
+            </div>
+        
+            <button [disabled]="!editItemForm.valid" type="submit" class="btn btn-secondary">Save</button>
+            <button (click)="openEdit()" type="button" class="btn btn-outline-secondary">Cancel</button>
+          </form>
+    </ng-template>
+
+    <ng-template #detailsDiv>
+        <div class="card-body">
+            <div class="row">
+                <div class="check-box" (click)="markPurchased()">
+                    <div *ngIf="item.isPurchased">
+                        <i class="fa fa-check"></i>
+                    </div>
+                </div>
   
+                <h5 class="card-title" [class.is-purchased]="item.isPurchased">{{item.title}}</h5>
+  
+                <span *ngIf="editIcon" class="notes-icon" (click)="seeDetails()">
+                    <i class="fa fa-paperclip"></i>
+                </span>
+            </div>
+  
+            <div class="notes-div" [@openDiv]="openDetails ? 'open' : 'closed'">
+              <p class="card-text">{{item.notes}}</p>
+              <button (click)="openEdit()" type="button" class="btn btn-secondary">Edit</button>
+              <button (click)="confirmDelete(content)" type="button" class="btn btn-secondary">Delete</button>
+            </div>
+        </div>
+    </ng-template>
+
 </div>
 
 <ng-template #content let-c="close" let-d="dismiss">
@@ -44,7 +53,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="deleteItem(); c('Close click')">Delete</button>
-    <button type="button" class="btn btn-outline-secondary" (click)="c('Close click'); seeDetails()">Cancel</button>
+    <button type="button" class="btn btn-outline-secondary" (click)="c('Close click');">Cancel</button>
   </div>
 </ng-template>
 

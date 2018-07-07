@@ -12,9 +12,11 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class GroceryItemComponent implements OnInit {
   @Input() item: any;
   @Output() updateRemove = new EventEmitter();
+  @Output() shuffle = new EventEmitter();
 
   openDetails = false;
   editView = false;
+  editIcon = false;
 
   constructor(private itemService: ItemService, private modalService: NgbModal) { }
 
@@ -41,7 +43,7 @@ export class GroceryItemComponent implements OnInit {
     this.itemService.updateItem(this.item).subscribe(res => {
       console.log(res);
     });
-    this.seeDetails();
+    this.openEdit();
   }
 
   openEdit() {
@@ -53,5 +55,10 @@ export class GroceryItemComponent implements OnInit {
     this.itemService.updateItem(this.item).subscribe(res => {
       console.log(res);
     });
+    //this.shuffle.emit();
+  }
+
+  showEditIcon() {
+    this.editIcon = !this.editIcon;
   }
 }

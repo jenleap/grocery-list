@@ -1,12 +1,16 @@
-<button (click)="toggleAddItem()" type="button" class="add-button btn btn-secondary">Add Item</button>
+<div *ngIf="addItem; then createDiv else addButton"></div>
 
-<div [@openDiv]="addItem ? 'open' : 'closed'">
-    <app-add-item (close)="toggleAddItem()" (update)="addItemtoList($event)"></app-add-item>
-</div>
+<ng-template #createDiv>
+    <app-add-item (close)="toggleAddItem()" (update)="addItemtoList($event)" ></app-add-item>
+</ng-template>
+
+<ng-template #addButton>
+    <button (click)="toggleAddItem()" type="button" class="add-button btn btn-secondary">Add Item</button>
+</ng-template>
 
 <ul>
   <li *ngFor="let i of items">
-    <app-grocery-item [item]="i" (updateRemove)="removeItemfromList($event)"></app-grocery-item>
+    <app-grocery-item [item]="i" (updateRemove)="removeItemfromList($event)" (shuffle)="shuffleList()"></app-grocery-item>
   </li>
 </ul>
 

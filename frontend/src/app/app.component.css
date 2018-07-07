@@ -2,3 +2,9 @@
     max-width: 500px;
     margin: auto;
 }
+
+h1 {
+    font-family: 'Knewave', cursive;
+    color: #99b3ff;
+    margin-top: 50px;
+}
