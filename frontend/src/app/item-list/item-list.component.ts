@@ -22,7 +22,13 @@ export class ItemListComponent implements OnInit {
     this.addItem = !this.addItem;
   }
 
-  updateList(item) {
+  addItemtoList(item) {
     this.items.push(item);
+  }
+
+  removeItemfromList(id) {
+    this.items = this.items.filter(i => {
+      return i.id != id;
+    });
   }
 }

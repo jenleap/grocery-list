@@ -1,7 +1,7 @@
 <div *ngIf="addItem; then addComponent else addButton"></div>
 
 <ng-template #addComponent>
-  <app-add-item (close)="toggleAddItem()" (update)="updateList($event)"></app-add-item>
+  <app-add-item (close)="toggleAddItem()" (update)="addItemtoList($event)"></app-add-item>
 </ng-template>
 
 <ng-template #addButton>
@@ -10,7 +10,7 @@
 
 <ul>
   <li *ngFor="let i of items">
-    <app-grocery-item [item]="i"></app-grocery-item>
+    <app-grocery-item [item]="i" (updateRemove)="removeItemfromList($event)"></app-grocery-item>
   </li>
 </ul>
 

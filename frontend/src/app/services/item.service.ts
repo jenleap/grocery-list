@@ -6,18 +6,21 @@ import { Injectable } from '@angular/core';
 })
 export class ItemService {
     baseUrl = "http://localhost:64018/api/Items";
+    headers = new Headers({'Content-type': 'application/json'});
+    options = new RequestOptions({headers: this.headers});
     
     constructor(private http: Http) { }
 
     addItem(item: any) {
-      const headers = new Headers({'Content-type': 'application/json'});
-      const options = new RequestOptions({headers: headers});
-
-      return this.http.post(this.baseUrl, item, options);
+      return this.http.post(this.baseUrl, item, this.options);
     }
 
     getItems() {
       return this.http.get(this.baseUrl);
+    }
+
+    updateItem(item: any) {
+      return this.http.put(`${this.baseUrl}/${item.id}`, item, this.options);
     }
   
 }

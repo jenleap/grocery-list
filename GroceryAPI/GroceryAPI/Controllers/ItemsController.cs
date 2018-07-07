@@ -25,7 +25,9 @@ namespace GroceryAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetItems()
         {
-            var items = await _context.Items.ToListAsync();
+            var items = await _context.Items
+                .Where(i => i.IsDeleted == false)
+                .ToListAsync();
             return Ok(items);
         }
 
@@ -38,7 +40,9 @@ namespace GroceryAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var item = await _context.Items.SingleOrDefaultAsync(m => m.Id == id);
+            var item = await _context.Items
+                .Where(i => i.IsDeleted == false)
+                .SingleOrDefaultAsync(m => m.Id == id);
 
             if (item == null)
             {

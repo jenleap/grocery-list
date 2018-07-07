@@ -1,5 +1,4 @@
 import { ItemService } from './../services/item.service';
-import { Http } from '@angular/http';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 
@@ -14,7 +13,7 @@ export class AddItemComponent implements OnInit {
 
   formItem: any = {}
 
-  constructor(private http: Http, private itemService: ItemService) { }
+  constructor(private itemService: ItemService) { }
 
   ngOnInit() {
   }
