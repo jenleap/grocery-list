@@ -14,6 +14,7 @@ export class GroceryItemComponent implements OnInit {
   @Output() updateRemove = new EventEmitter();
 
   openDetails = false;
+  editView = false;
 
   constructor(private itemService: ItemService, private modalService: NgbModal) { }
 
@@ -36,6 +37,16 @@ export class GroceryItemComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
+  updateItem(){
+    this.itemService.updateItem(this.item).subscribe(res => {
+      console.log(res);
+    });
+    this.seeDetails();
+  }
+
+  openEdit() {
+    this.editView = !this.editView;
+  }
 
 
 }

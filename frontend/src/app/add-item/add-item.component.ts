@@ -1,7 +1,6 @@
 import { ItemService } from './../services/item.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
-
 @Component({
   selector: 'app-add-item',
   templateUrl: './add-item.component.html',
@@ -10,7 +9,6 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class AddItemComponent implements OnInit {
   @Output() close = new EventEmitter();
   @Output() update = new EventEmitter();
-
 
   formItem: any = {}
 
