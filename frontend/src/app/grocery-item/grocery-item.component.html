@@ -2,7 +2,12 @@
   
     <div [@openDiv]="!editView ? 'open' : 'closed'">
       <div class="card-body">
-          <h5 class="card-title">{{item.title}}</h5>
+          <div class="check-box" (click)="markPurchased()">
+            <div *ngIf="item.isPurchased">
+                <i class="fa fa-check"></i>
+            </div>
+          </div>
+          <h5 class="card-title" [class.is-purchased]="item.isPurchased">{{item.title}}</h5>
           <div [@openDiv]="openDetails ? 'open' : 'closed'">
             <p class="card-text">{{item.notes}}</p>
             <button (click)="openEdit()" type="button" class="btn btn-secondary">Edit</button>

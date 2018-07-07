@@ -48,5 +48,10 @@ export class GroceryItemComponent implements OnInit {
     this.editView = !this.editView;
   }
 
-
+  markPurchased() {
+    this.item.isPurchased = !this.item.isPurchased;
+    this.itemService.updateItem(this.item).subscribe(res => {
+      console.log(res);
+    });
+  }
 }
