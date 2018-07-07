@@ -10,15 +10,7 @@
 
 <ul>
   <li *ngFor="let i of items">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{i.title}}</h5>
-        <div class="additionalInfo">
-          <p class="card-text">{{i.notes}}</p>
-          <button type="button" class="btn btn-secondary">Edit</button>
-        </div>
-      </div>
-    </div>
+    <app-grocery-item [item]="i"></app-grocery-item>
   </li>
 </ul>
 

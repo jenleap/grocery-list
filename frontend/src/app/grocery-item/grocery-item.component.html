@@ -1,0 +1,9 @@
+<div (click)="seeDetails()" class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{item.title}}</h5>
+    <div *ngIf="openDetails">
+      <p class="card-text">{{item.notes}}</p>
+      <button type="button" class="btn btn-secondary">Edit</button>
+    </div>
+  </div>
+</div>
