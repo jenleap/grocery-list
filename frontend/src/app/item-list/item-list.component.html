@@ -8,9 +8,17 @@
     <button (click)="toggleAddItem()" type="button" class="add-button btn btn-secondary">Add Item</button>
 </ng-template>
 
-<ul>
-  <li *ngFor="let i of items">
-    <app-grocery-item [item]="i" (updateRemove)="removeItemfromList($event)" (shuffle)="shuffleList()"></app-grocery-item>
-  </li>
-</ul>
+<div *ngIf="loading; then loadingDiv else itemList"></div>
+
+<ng-template #loadingDiv>
+  <h1 style="text-align: center">Loading...</h1>
+</ng-template>
+
+<ng-template #itemList>
+  <ul>
+    <li *ngFor="let i of items">
+      <app-grocery-item [item]="i" (updateRemove)="removeItemfromList($event)" (shuffle)="shuffleList()"></app-grocery-item>
+    </li>
+  </ul>
+</ng-template>
 

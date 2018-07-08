@@ -1,27 +1,29 @@
-# Frontend
+# Grocery List
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+This is a simple web-based grocery list application. It allows the user to track a list of grocery items to purchase.
 
-## Development server
+### Install & Launch
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Clone the GitHub repository. 
 
-## Code scaffolding
+```
+    $ git clone https://github.com/jenleap/grocery-list
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+First, launch the API. Open the solution file (.sln) in Visual Studio. From the Package Manager Console, run the command:
 
-## Build
+```
+    $ update-database
+```
+You should not need to update the default connection string (in appsetting.json) but you may do so if you prefer to use a different database.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Once this has completed, run the project. (Click the IIS Express button with the green arrow.)
 
-## Running unit tests
+Then, launch the frontend. From inside the frontend folder, run the commands:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+    $ npm install
+    $ ng serve
+```
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+You can now access the application from the url: http//localhost:4200.

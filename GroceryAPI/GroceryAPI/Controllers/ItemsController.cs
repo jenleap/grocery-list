@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using GroceryAPI.Data;
 using GroceryAPI.Models;
+using AutoMapper;
+using GroceryAPI.Data.Dtos;
 
 namespace GroceryAPI.Controllers
 {
@@ -15,10 +17,12 @@ namespace GroceryAPI.Controllers
     public class ItemsController : Controller
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public ItemsController(DataContext context)
+        public ItemsController(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Items
@@ -28,7 +32,10 @@ namespace GroceryAPI.Controllers
             var items = await _context.Items
                 .Where(i => i.IsDeleted == false)
                 .ToListAsync();
-            return Ok(items);
+
+            var itemDtos = _mapper.Map<IEnumerable<ItemDto>>(items);
+
+            return Ok(itemDtos);
         }
 
         // GET: api/Items/5
@@ -49,12 +56,14 @@ namespace GroceryAPI.Controllers
                 return NotFound();
             }
 
-            return Ok(item);
+            var itemDto = _mapper.Map<ItemDto>(item);
+
+            return Ok(itemDto);
         }
 
         // PUT: api/Items/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutItem([FromRoute] int id, [FromBody] Item item)
+        public async Task<IActionResult> PutItem([FromRoute] int id, [FromBody] ItemDto item)
         {
             if (!ModelState.IsValid)
             {
@@ -66,7 +75,9 @@ namespace GroceryAPI.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(item).State = EntityState.Modified;
+            var modifiedItem = _mapper.Map<Item>(item);
+
+            _context.Entry(modifiedItem).State = EntityState.Modified;
 
             try
             {
@@ -89,17 +100,19 @@ namespace GroceryAPI.Controllers
 
         // POST: api/Items
         [HttpPost]
-        public async Task<IActionResult> PostItem([FromBody] Item item)
+        public async Task<IActionResult> PostItem([FromBody] ItemDto item)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Items.Add(item);
+            var newItem = _mapper.Map<Item>(item);
+
+            _context.Items.Add(newItem);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetItem", new { id = item.Id }, item);
+            return CreatedAtAction("GetItem", new { id = newItem.Id }, newItem);
         }
 
         // DELETE: api/Items/5

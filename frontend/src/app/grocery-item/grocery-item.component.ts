@@ -2,6 +2,7 @@ import { openDiv } from './../animations';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ItemService } from '../services/item.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Item } from "./../item";
 
 @Component({
   selector: 'app-grocery-item',
@@ -10,15 +11,13 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   animations: [ openDiv ]
 })
 export class GroceryItemComponent implements OnInit {
-  @Input() item: any;
+  @Input() item: Item;
   @Output() updateRemove = new EventEmitter();
   @Output() shuffle = new EventEmitter();
 
   openDetails = false;
   editView = false;
   editIcon = false;
-
-  tempItem: any;
 
   constructor(private itemService: ItemService, private modalService: NgbModal) { }
 

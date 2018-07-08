@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemService } from '../services/item.service';
 import { openDiv } from './../animations';
+import { Item } from "./../item";
 
 @Component({
   selector: 'app-item-list',
@@ -9,15 +10,18 @@ import { openDiv } from './../animations';
   animations: [ openDiv ]
 })
 export class ItemListComponent implements OnInit {
-  items: any;
+  items: Item[];
   addItem = false;
+  loading = false;
 
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
+    this.loading = true;
     this.itemService.getItems().subscribe(res => {
       this.items = res.json();
       this.shuffleList();
+      this.loading = false;
     }); 
     
   }
@@ -26,11 +30,11 @@ export class ItemListComponent implements OnInit {
     this.addItem = !this.addItem;
   }
 
-  addItemtoList(item) {
+  addItemtoList(item: Item) {
     this.items.splice(0, 0, item);
   }
 
-  removeItemfromList(id) {
+  removeItemfromList(id: number) {
     this.items = this.items.filter(i => {
       return i.id != id;
     });

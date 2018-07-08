@@ -1,5 +1,6 @@
 import { Http, RequestOptions, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { Item } from "./../item";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ItemService {
     
     constructor(private http: Http) { }
 
-    addItem(item: any) {
+    addItem(item: Item) {
       return this.http.post(this.baseUrl, item, this.options);
     }
 
@@ -19,7 +20,7 @@ export class ItemService {
       return this.http.get(this.baseUrl);
     }
 
-    updateItem(item: any) {
+    updateItem(item: Item) {
       return this.http.put(`${this.baseUrl}/${item.id}`, item, this.options);
     }
   

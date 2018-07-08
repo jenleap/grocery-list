@@ -1,5 +1,6 @@
 import { ItemService } from './../services/item.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Item } from "./../item";
 
 @Component({
   selector: 'app-add-item',
@@ -10,11 +11,21 @@ export class AddItemComponent implements OnInit {
   @Output() close = new EventEmitter();
   @Output() update = new EventEmitter();
 
-  formItem: any = {}
+  formItem: Item;
 
   constructor(private itemService: ItemService) { }
 
   ngOnInit() {
+    this.initForm();
+  }
+
+  initForm() {
+    this.formItem = {
+      title: '',
+      notes: '',
+      isPurchased: false,
+      isDeleted: false
+    };
   }
 
   closeComponent() {
@@ -32,7 +43,7 @@ export class AddItemComponent implements OnInit {
     this.itemService.addItem(item).subscribe(res => { 
       this.update.emit(res.json());
     });
-    this.formItem = {};
+    this.initForm();
   }
 
 }
