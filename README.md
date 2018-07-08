@@ -4,6 +4,8 @@ This is a simple web-based grocery list application. It allows the user to track
 
 ### Install & Launch
 
+To run this application, please ensure you have Visual Studio and Angular CLI installed on your computer.
+
 Clone the GitHub repository. 
 
 ```
