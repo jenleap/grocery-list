@@ -4,7 +4,7 @@ This is a simple web-based grocery list application. It allows the user to track
 
 ### Install & Launch
 
-To run this application, please ensure you have Visual Studio and Angular CLI installed on your computer.
+To run this application, please ensure you have Visual Studio (up-to-date with .Net Core 2.0) and Angular CLI installed on your computer.
 
 Clone the GitHub repository. 
 
@@ -12,7 +12,7 @@ Clone the GitHub repository.
     $ git clone https://github.com/jenleap/grocery-list
 ```
 
-First, launch the API. Open the solution file (.sln) in Visual Studio. From the Package Manager Console, run the command:
+First, launch the API. Open the project in Visual Studio by selecting the solution file (.sln) from the GroceryAPI folder. Once the project is open, from the Package Manager Console, run the command:
 
 ```
     $ update-database
