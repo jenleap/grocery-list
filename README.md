@@ -9,7 +9,7 @@ To run this application, please ensure you have Visual Studio (up-to-date with .
 Clone the GitHub repository. 
 
 ```
-    $ git clone https://github.com/jenleap/grocery-list
+    $ git clone https://github.com/jenleap/grocery-list.git
 ```
 
 First, launch the API. Open the project in Visual Studio by selecting the solution file (.sln) from the GroceryAPI folder. Once the project is open, from the Package Manager Console, run the command:
