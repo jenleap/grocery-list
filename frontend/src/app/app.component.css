@@ -3,8 +3,10 @@
     margin: auto;
 }
 
-h1 {
-    font-family: 'Knewave', cursive;
-    color: #99b3ff;
-    margin-top: 50px;
+a {
+    font-family: 'Gaegu', cursive;
+}
+
+.navbar-brand {
+    margin-left: 10%;
 }

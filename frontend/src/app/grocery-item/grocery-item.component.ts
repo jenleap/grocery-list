@@ -18,6 +18,8 @@ export class GroceryItemComponent implements OnInit {
   editView = false;
   editIcon = false;
 
+  tempItem: any;
+
   constructor(private itemService: ItemService, private modalService: NgbModal) { }
 
   ngOnInit() {
@@ -39,7 +41,12 @@ export class GroceryItemComponent implements OnInit {
     this.modalService.open(content, { centered: true });
   }
 
-  updateItem(){
+  updateItem(formData: any){
+    this.item = {
+      ...this.item,
+      title: formData.title,
+      notes: formData.notes,
+    };
     this.itemService.updateItem(this.item).subscribe(res => {
       console.log(res);
     });
@@ -48,6 +55,7 @@ export class GroceryItemComponent implements OnInit {
 
   openEdit() {
     this.editView = !this.editView;
+    console.log(this.item);
   }
 
   markPurchased() {
@@ -55,7 +63,7 @@ export class GroceryItemComponent implements OnInit {
     this.itemService.updateItem(this.item).subscribe(res => {
       console.log(res);
     });
-    //this.shuffle.emit();
+    this.shuffle.emit();
   }
 
   showEditIcon() {

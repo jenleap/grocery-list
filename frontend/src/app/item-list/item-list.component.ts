@@ -17,7 +17,7 @@ export class ItemListComponent implements OnInit {
   ngOnInit() {
     this.itemService.getItems().subscribe(res => {
       this.items = res.json();
-      //this.shuffleList();
+      this.shuffleList();
     }); 
     
   }
@@ -39,6 +39,10 @@ export class ItemListComponent implements OnInit {
   shuffleList() {
     this.items.sort((x, y) => {
       return (x.isPurchased === y.isPurchased)? 0 : x? 1 : -1;
-    }).reverse();
+    });
+
+    if (this.items[0].isPurchased == true) {
+      this.items.reverse();
+    }
   }
 }

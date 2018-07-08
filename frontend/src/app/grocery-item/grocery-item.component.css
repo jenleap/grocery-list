@@ -20,16 +20,23 @@ button {
     text-decoration-line: line-through;
 }
 
-.notes-icon {
+.icon {
     font-size: 30px;
     color: #ccc;
+}
+
+.notes-icon {
     position: absolute;
     top: 5px;
     right: 10px;
 }
 
-.notes-icon:hover {
+.icon:hover {
     cursor: pointer;
+}
+
+.icon-edit {
+    margin-right: 30px;
 }
 
 .card-title {
@@ -42,6 +49,10 @@ button {
 
 .notes-div p {
     text-align: left;
+    margin-left: 80px;
+}
+
+.notes-div .row {
     margin-left: 80px;
 }
 
