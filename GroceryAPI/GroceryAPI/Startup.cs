@@ -47,6 +47,8 @@ namespace GroceryAPI
                 .AllowCredentials()
                 );
             app.UseMvc();
+
+            SeedData.SeedDatabase(app);
         }
 
     }
